@@ -88,9 +88,6 @@ class _Home_PageState extends State<Home_Page> {
                           ),
                         );
                         isAccesibilitySelected = !isAccesibilitySelected;
-                        // isTimerSelected = !isTimerSelected;
-                        // isAndroidSelected = !isAndroidSelected;
-                        // isIosSelected =!isIosSelected;
                         setState(() {});
                       },
                       icon: const Icon(Icons.accessibility),
@@ -105,10 +102,7 @@ class _Home_PageState extends State<Home_Page> {
                                 "Cuenta regresiva para el evento: 31 días"),
                           ),
                         );
-                        // isAccesibilitySelected = !isAccesibilitySelected;
                         isTimerSelected = !isTimerSelected;
-                        // isAndroidSelected = !isAndroidSelected;
-                        // isIosSelected =!isIosSelected;
                         setState(() {});
                       },
                       icon: const Icon(Icons.timer),
@@ -122,10 +116,7 @@ class _Home_PageState extends State<Home_Page> {
                             content: Text("Llama al número 4155550198"),
                           ),
                         );
-                        // isAccesibilitySelected = !isAccesibilitySelected;
-                        // isTimerSelected = !isTimerSelected;
                         isAndroidSelected = !isAndroidSelected;
-                        // isIosSelected =!isIosSelected;
                         setState(() {});
                       },
                       icon: const Icon(Icons.phone_android),
@@ -139,9 +130,6 @@ class _Home_PageState extends State<Home_Page> {
                             content: Text("Llama al celular 3317865113"),
                           ),
                         );
-                        // isAccesibilitySelected = !isAccesibilitySelected;
-                        // isTimerSelected = !isTimerSelected;
-                        // isAndroidSelected = !isAndroidSelected;
                         isIosSelected =!isIosSelected;
                         setState(() {});
                       },
