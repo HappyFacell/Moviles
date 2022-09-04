@@ -18,7 +18,7 @@ class _Home_PageState extends State<Home_Page> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Material App Bar'),
+          title: const Text('MC Flutter'),
         ),
         body: Container(
           margin: const EdgeInsets.all(15.0),
