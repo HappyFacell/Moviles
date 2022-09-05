@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'item_movie.dart';
+import 'popcorns.dart';
 
 class HomePage extends StatelessWidget {
   final _listElements = [
@@ -32,17 +33,38 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.indigo,
       appBar: AppBar(
-        title: const Text('Material App Bar'),
+        title: const Text('Peliculas Favoritas'),
+        backgroundColor: const Color.fromARGB(255, 64, 90, 238),
+        centerTitle: true,
+        
       ),
-      body: ListView.builder(
-        itemCount: _listElements.length,
-        itemBuilder: (BuildContext context, int index) {
-          return ItemMoie(
-            movieData: _listElements[index],
-          );
-        },
+      body: Column(
+        children: [
+          listAligment(context),
+          Popcorn()
+        ],
       ),
+    );
+  }
+
+  Container listAligment(BuildContext context) {
+    return Container(
+      height: MediaQuery.of(context).size.height / 4,
+      child: movieList(),
+    );
+  }
+
+  ListView movieList() {
+    return ListView.builder(
+      scrollDirection: Axis.horizontal,
+      itemCount: _listElements.length,
+      itemBuilder: (BuildContext context, int index) {
+        return ItemMoie(
+          movieData: _listElements[index],
+        );
+      },
     );
   }
 }
