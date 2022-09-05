@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class ItemMoie extends StatelessWidget {
-  const ItemMoie({Key? key}) : super(key: key);
+  final Map<String, String> movieData;
+  
+
+  ItemMoie({Key? key, required this.movieData});
 
   @override
   Widget build(BuildContext context) {
@@ -9,7 +12,7 @@ class ItemMoie extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Stack(
         children: [
-          // Image.network(""),
+          Image.network("${movieData['image']}"),
           const Placeholder(
             fallbackHeight: 104,
           ),
@@ -25,19 +28,18 @@ class ItemMoie extends StatelessWidget {
                 ),
               ),
               child: Column(
-                children: const [
+                children: [
                   Text(
-                    "Titulo",
-                    style: TextStyle(
+                    "${movieData["title"]}",
+                    style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   Text(
-                    "Ranking",
-                    style: TextStyle(
+                    "${movieData["description"]}",
+                    style: const TextStyle(
                       color: Colors.white,
-                      fontWeight: FontWeight.bold,
                     ),
                   )
                 ],
