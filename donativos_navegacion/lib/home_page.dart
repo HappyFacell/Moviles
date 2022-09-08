@@ -103,11 +103,11 @@ class _HomePageState extends State<HomePage> {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) => Donativos(
-                donativos: donacionesAcumuladas,
+                donativos: donacionesAcumuladas, totalPaypal: totalPaypal, totalTarjetas: totalTarjetas,
               ),
             ),
           );
-          Navigator.of(context).pushNamed("/donativos");
+          // Navigator.of(context).pushNamed("/donativos");
         },
       ),
     );
