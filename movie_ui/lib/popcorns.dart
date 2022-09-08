@@ -8,18 +8,45 @@ class Popcorn extends StatefulWidget {
 }
 
 class _PopcornState extends State<Popcorn> {
+  final _pictureUrl =
+      "https://freepngimg.com/thumb/popcorn/23411-8-popcorn-clipart.png";
+  int palomitas = 0;
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: Column(
+    return Card(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Image.network(
-            "https://miro.medium.com/max/702/1*Z27c1lyW5ZE9xn1w-IjiVQ.png",
-            height: 50,
-            width: 50,
+          Image.network(_pictureUrl, fit: BoxFit.contain, height: 120),
+          Column(
+            children: [
+              const Text("Palomitas medianas"),
+              Text("$palomitas"),
+              // podemos extraer methods para evitar mucha anidacion de parentesis
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      palomitas++;
+                      setState(() {});
+                    },
+                    icon: const Icon(Icons.arrow_upward),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      if (palomitas > 0) {
+                        palomitas--;
+                      }
+                      setState(() {});
+                    },
+                    icon: const Icon(Icons.arrow_downward),
+                  ),
+                ],
+              ),
+            ],
           ),
-          Text("Palomitas (Medianas)"),
         ],
       ),
     );
