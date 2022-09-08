@@ -1,53 +1,50 @@
 import 'package:flutter/material.dart';
 
 class ItemMoie extends StatelessWidget {
-  final Map<String, String> movieData;
+  final Map<String, String> content;
 
-  ItemMoie({Key? key, required this.movieData});
+  ItemMoie({Key? key, required this.content})  : super(key: key) ;
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 10),
       width: 150,
-      padding: const EdgeInsets.all(8.0),
-      child: 
-      ClipRRect(
+      child: ClipRRect(
         borderRadius: BorderRadius.circular(15),
         child: Stack(
           children: [
             Positioned.fill(
-              child: Image.network("${movieData['image']}, fit: BoxFit.fill"),
+              child: Image.network(
+                content["image"]!,
+                fit: BoxFit.fill,
+              ),
             ),
             Positioned(
-              bottom: 0,
+              bottom: 10,
               right: 0,
               left: 0,
               child: Container(
                 decoration: const BoxDecoration(
-                  color: Color(0xEF4169D8),
-                  borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(15.0),
-                  ),
+                  color: Color(0xef4169D8),
+                  borderRadius:
+                      BorderRadius.only(topRight: Radius.circular(15)),
                 ),
                 child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      "${movieData["title"]}",
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      "${content["title"]}",
+                      style: TextStyle(color: Colors.grey[200]),
                     ),
                     Text(
-                      "${movieData["description"]}",
-                      style: const TextStyle(
-                        color: Colors.white,
-                      ),
-                    )
+                      "${content["description"]}",
+                      style: TextStyle(color: Colors.grey[200]),
+                    ),
                   ],
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

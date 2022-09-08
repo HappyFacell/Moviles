@@ -38,19 +38,16 @@ class HomePage extends StatelessWidget {
         title: const Text('Peliculas Favoritas'),
         backgroundColor: const Color.fromARGB(255, 64, 90, 238),
         centerTitle: true,
-        
       ),
       body: Column(
-        children: [
-          listAligment(context),
-          Popcorn()
-        ],
+        children: [listAligment(context), const Popcorn()],
       ),
     );
   }
 
   Container listAligment(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.all(18),
       height: MediaQuery.of(context).size.height / 4,
       child: movieList(),
     );
@@ -61,8 +58,13 @@ class HomePage extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       itemCount: _listElements.length,
       itemBuilder: (BuildContext context, int index) {
-        return ItemMoie(
-          movieData: _listElements[index],
+        return GestureDetector(
+          onTap: () => {
+            //show dialog
+          },
+          child: ItemMoie(
+            content: _listElements[index],
+          ),
         );
       },
     );
