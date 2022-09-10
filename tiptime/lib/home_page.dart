@@ -10,7 +10,14 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   // TODO: completar todo lo necesario
   var tipController = TextEditingController();
-  double totalTip = 0;
+  double totalTip = 0.00;
+
+  int? currentRadio;
+  var radioGroup = {
+    0: "Amazing 20%",
+    1: "Good 18%",
+    2: "Okay 15%",
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +38,7 @@ class _HomePageState extends State<HomePage> {
                 keyboardType: TextInputType.datetime,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'User Name',
+                  labelText: 'Service',
                 ),
               ),
             ),
@@ -40,7 +47,10 @@ class _HomePageState extends State<HomePage> {
             leading: Icon(Icons.dinner_dining),
             title: Text("How was the service?"),
           ),
-          const Text("Aqui agregar el GRUPO de radio buttons"),
+          Column(
+            mainAxisSize: MainAxisSize.min, children: radioGroupGenerator(),
+// const Text("Aqui agregar el GRUPO de radio buttons"),
+          ),
           const ListTile(
             leading: Icon(Icons.credit_card),
             title: Text("Round up tip"),
@@ -57,7 +67,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           Text(
-            "Tip amount: $totalTip",
+            "Tip amount: \$${(totalTip).toStringAsFixed(2)}",
             textAlign: TextAlign.end,
           ),
         ],
@@ -66,9 +76,37 @@ class _HomePageState extends State<HomePage> {
   }
 
   double _tipCalculation() {
+    // TODO: completar
     double totalTip = double.parse(tipController.text);
-    totalTip = double.parse((totalTip*0.22).toStringAsFixed(3));
-    return totalTip;
+    if (currentRadio == 0){
+      return totalTip = totalTip * 0.2;
+    }
+    else if (currentRadio == 1){
+      return totalTip = totalTip * 0.18;
+    }
+    else if (currentRadio == 2){
+      return totalTip = totalTip * 0.15;
+    }
+    else{
+      return 0.00;
+    }
   }
-  // TODO: completar
+
+  radioGroupGenerator() {
+    return radioGroup.entries
+        .map(
+          (radioElement) => ListTile(
+            leading: Radio(
+              value: radioElement.key,
+              groupValue: currentRadio,
+              onChanged: (int? selected) {
+                currentRadio = selected;
+                setState(() {});
+              },
+            ),
+            title: Text(radioElement.value),
+          ),
+        )
+        .toList();
+  }
 }
