@@ -11,6 +11,7 @@ class _HomePageState extends State<HomePage> {
   // TODO: completar todo lo necesario
   var tipController = TextEditingController();
   double totalTip = 0.00;
+  bool roundTipUp = false;
 
   int? currentRadio;
   var radioGroup = {
@@ -49,11 +50,25 @@ class _HomePageState extends State<HomePage> {
           ),
           Column(
             mainAxisSize: MainAxisSize.min, children: radioGroupGenerator(),
-// const Text("Aqui agregar el GRUPO de radio buttons"),
           ),
-          const ListTile(
-            leading: Icon(Icons.credit_card),
-            title: Text("Round up tip"),
+          ListTile(
+            leading: const Icon(Icons.credit_card),
+            title: Row(
+              children: [
+                const Text("Round up tip"),
+                const Spacer(),
+                Switch(
+                  value: roundTipUp,
+                  onChanged: (newvalue) {
+                    setState(
+                      () {
+                        roundTipUp = newvalue;
+                      },
+                    );
+                  },
+                )
+              ],
+            ),
           ),
           MaterialButton(
             onPressed: () {
@@ -76,18 +91,20 @@ class _HomePageState extends State<HomePage> {
   }
 
   double _tipCalculation() {
-    // TODO: completar
     double totalTip = double.parse(tipController.text);
-    if (currentRadio == 0){
-      return totalTip = totalTip * 0.2;
-    }
-    else if (currentRadio == 1){
-      return totalTip = totalTip * 0.18;
-    }
-    else if (currentRadio == 2){
-      return totalTip = totalTip * 0.15;
-    }
-    else{
+    if (currentRadio == 0) {
+      totalTip = totalTip * 0.2;
+      roundTipUp == true ? totalTip = totalTip.roundToDouble() : totalTip = totalTip; 
+      return totalTip;
+    } else if (currentRadio == 1) {
+      totalTip = totalTip * 0.18;
+      roundTipUp == true ? totalTip = totalTip.roundToDouble() : totalTip = totalTip; 
+      return totalTip;
+    } else if (currentRadio == 2) {
+      totalTip = totalTip * 0.15;
+      roundTipUp == true ? totalTip = totalTip.roundToDouble() : totalTip = totalTip; 
+      return totalTip;
+    } else {
       return 0.00;
     }
   }
