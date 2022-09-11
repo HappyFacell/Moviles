@@ -8,7 +8,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // TODO: completar todo lo necesario
   var tipController = TextEditingController();
   double totalTip = 0.00;
   bool roundTipUp = false;
@@ -49,7 +48,8 @@ class _HomePageState extends State<HomePage> {
             title: Text("How was the service?"),
           ),
           Column(
-            mainAxisSize: MainAxisSize.min, children: radioGroupGenerator(),
+            mainAxisSize: MainAxisSize.min,
+            children: radioGroupGenerator(),
           ),
           ListTile(
             leading: const Icon(Icons.credit_card),
@@ -91,18 +91,41 @@ class _HomePageState extends State<HomePage> {
   }
 
   double _tipCalculation() {
-    double totalTip = double.parse(tipController.text);
+    double? totalTip = double.tryParse(tipController.text);
+    if (totalTip == null) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: const Text('Error to calculate tip'),
+          content: const Text('Please enter your service total.'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+      return 0.00;
+    }
+
     if (currentRadio == 0) {
       totalTip = totalTip * 0.2;
-      roundTipUp == true ? totalTip = totalTip.roundToDouble() : totalTip = totalTip; 
+      roundTipUp == true
+          ? totalTip = totalTip.ceilToDouble()
+          : totalTip = totalTip;
       return totalTip;
     } else if (currentRadio == 1) {
       totalTip = totalTip * 0.18;
-      roundTipUp == true ? totalTip = totalTip.roundToDouble() : totalTip = totalTip; 
+      roundTipUp == true
+          ? totalTip = totalTip.ceilToDouble()
+          : totalTip = totalTip;
       return totalTip;
     } else if (currentRadio == 2) {
       totalTip = totalTip * 0.15;
-      roundTipUp == true ? totalTip = totalTip.roundToDouble() : totalTip = totalTip; 
+      roundTipUp == true
+          ? totalTip = totalTip.ceilToDouble()
+          : totalTip = totalTip;
       return totalTip;
     } else {
       return 0.00;
