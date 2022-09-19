@@ -13,8 +13,8 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
 int counter = 0;
+
 class HomePage extends StatelessWidget {
   const HomePage({
     Key? key,
@@ -23,12 +23,13 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Material App Bar'),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.only(left: 12, right: 12),
-          child: Column(children: [
+      appBar: AppBar(
+        title: const Text('Material App Bar'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.only(left: 12, right: 12),
+        child: Column(
+          children: [
             Image.network(
                 "https://cruce.iteso.mx/wp-content/uploads/sites/123/2018/04/Portada-2-e1525031912445.jpg"),
             Row(
@@ -67,8 +68,11 @@ class HomePage extends StatelessWidget {
                         iconSize: 48,
                         icon: const Icon(Icons.mail),
                         onPressed: () {
-                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                              content: Text("Enviando correo...")));
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("Enviando correo..."),
+                            ),
+                          );
                         },
                       ),
                       const Text("Correo")
@@ -101,7 +105,9 @@ class HomePage extends StatelessWidget {
               "El ITESO, Universidad Jesuita de Guadalajara (Instituto Tecnológico y de Estudios Superiores de Occidente), es una universidad privada ubicada en la Zona Metropolitana de Guadalajara, Jalisco, México, fundada en el año 1957.",
               textAlign: TextAlign.justify,
             )
-          ]),
-        ));
+          ],
+        ),
+      ),
+    );
   }
 }
