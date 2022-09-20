@@ -12,16 +12,16 @@ class ItemToken extends StatelessWidget {
         leading: const FaIcon(FontAwesomeIcons.ethereum),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children:  [
-            Text("$tokenObj[string]"),
-            Text('$tokenObj[value]'),
+          children: [
+            Text("${tokenObj["string"]}"),
+            Text("\$${tokenObj["value"]}")
           ],
         ),
         subtitle: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children:  [
-            Text('$tokenObj[company]'),
-            Text('$tokenObj[money]'),
+          children: [
+            Text("${tokenObj["company"]}"),
+            Text("\$${tokenObj["money"]}")
           ],
         ),
       ),

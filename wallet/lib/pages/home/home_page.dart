@@ -7,21 +7,22 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Material App Bar'),
+      ),
+      body: Stack(children: [
         Container(
           color: Colors.green[900],
         ),
-        // Column(
-        //       children: [
-        //         BalanceSection(),
-        //         Divider(),
-        //         Expanded(
-        //           child: TokenSection(),
-        //         ),
-        //       ],
-        //     ),
-      ],
+        Column(
+          children: [
+            BalanceSection(),
+            Divider(),
+            Expanded(child: TokenSection())
+          ],
+        )
+      ]),
     );
   }
 }
