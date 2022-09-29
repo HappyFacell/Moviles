@@ -17,6 +17,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: 'Material App', home: HomePage());
+    return MaterialApp(
+      title: 'MusicFindApp',
+      theme: ThemeData(
+        colorScheme: const ColorScheme.dark(),
+      ),
+      home: const HomePage(),
+    );
   }
 }

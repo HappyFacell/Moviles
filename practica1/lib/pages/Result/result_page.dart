@@ -41,7 +41,7 @@ class _ResultPageState extends State<ResultPage> {
                         child: const Text("Si"),
                         onPressed: () {
                           //add song to favourites
-                          Map<String, dynamic> favourite = {
+                          Map<String, dynamic> favorite = {
                             "artistName": "${widget.song["artistName"]}",
                             "songName": "${widget.song["songName"]}",
                             "albumCover": "${widget.song["albumCover"]}",

@@ -2,6 +2,7 @@ import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:practica1/pages/Result/result_page.dart';
+import 'package:practica1/pages/favorite/favorite_page.dart';
 
 import 'bloc/homepage_bloc.dart';
 
@@ -39,7 +40,6 @@ class _HomePageState extends State<HomePage> {
               _cover = state.image;
               _link = state.link;
 
-              // TODO: Mandar a la pagina de visualizacion(Por crear)
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => ResultPage(
@@ -98,8 +98,7 @@ class _HomePageState extends State<HomePage> {
                     backgroundColor: Colors.red,
                   ),
                 );
-            }
-            else{
+            } else {
               _animation = false;
               _listenStatus = "Tap to Shazam";
             }
@@ -148,8 +147,15 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
+                // TODO: Crear provider para canciones favoritas y crear pagina de favoritos mandar ambos botones a la pagina
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const FavoritePage(),
+                      ),
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                     shape: const CircleBorder(),
                     backgroundColor: Colors.white,
@@ -160,7 +166,13 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const FavoritePage(),
+                        ),
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
                     ),
