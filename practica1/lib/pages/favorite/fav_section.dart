@@ -10,19 +10,22 @@ class FavSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Expanded(
-          child: ListView.builder(
-            itemCount: context.watch<FavoriteProvider>().getFavorite.length,
-            itemBuilder: (BuildContext context, int index) {
-              return ItemFav(
-                  favItem: context.read<FavoriteProvider>().getFavorite[index]);
-            },
-          ),
-        )
-      ],
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Expanded(
+            child: ListView.builder(
+              itemCount: context.watch<FavoriteProvider>().getFavorite.length,
+              itemBuilder: (BuildContext context, int index) {
+                return ItemFav(
+                    favItem:
+                        context.read<FavoriteProvider>().getFavorite[index]);
+              },
+            ),
+          )
+        ],
+      ),
     );
   }
 }

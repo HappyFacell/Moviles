@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:practica1/pages/favorite/fav_section.dart';
 import 'package:practica1/pages/favorite/provider/favorite_provider.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:provider/provider.dart';
-
-
 
 class FavoritePage extends StatefulWidget {
   const FavoritePage({super.key});
@@ -17,9 +14,16 @@ class _FavoritePageState extends State<FavoritePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      backgroundColor: const Color(0xff042442),
+      appBar: AppBar(
+        backgroundColor: const Color(0xff042442),
+        title: const Text(
+          'Favoites songs',
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
       body: context.watch<FavoriteProvider>().getFavorite.isNotEmpty
-          ?  const FavSection()
+          ? const FavSection()
           : _noFavItems(),
     );
   }
@@ -34,7 +38,7 @@ Column _noFavItems() {
         mainAxisAlignment: MainAxisAlignment.center,
         children: const [
           Text(
-            "There are no favorite songs yet",
+            "There are no favorite\nsongs yet",
             style: TextStyle(fontSize: 20),
           ),
         ],
