@@ -1,15 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:practica1/pages/favorite/provider/favorite_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-// final Uri _url = Uri.parse('https://flutter.dev');
+
+
 
 class ResultPage extends StatefulWidget {
   final song;
-
-  const ResultPage({super.key, this.song});
+  final bool isFavorite;
+  const ResultPage({
+    super.key,
+    this.song,
+    required this.isFavorite,
+  });
 
   @override
-  State<ResultPage> createState() => _ResultPageState();
+  State<ResultPage> createState() => _ResultPageState(
+        song,
+        isFavorite,
+      );
 }
 
 Future<void> _launchUrl(_url) async {
@@ -20,6 +30,10 @@ Future<void> _launchUrl(_url) async {
 }
 
 class _ResultPageState extends State<ResultPage> {
+  final Map<dynamic, dynamic> _song;
+  bool _isFavorite;
+  _ResultPageState(this._song, this._isFavorite);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,43 +45,35 @@ class _ResultPageState extends State<ResultPage> {
               //show favourite confirmation dialog
               showDialog(
                 context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    title: const Text("Favoritos"),
-                    content: const Text(
-                        "¿Quieres agregar esta canción a favoritos?"),
-                    actions: [
-                      TextButton(
-                        child: const Text("Si"),
-                        onPressed: () {
-                          //add song to favourites
-                          Map<String, dynamic> favorite = {
-                            "artistName": "${widget.song["artistName"]}",
-                            "songName": "${widget.song["songName"]}",
-                            "albumCover": "${widget.song["albumCover"]}",
-                            "listenLink": "${widget.song["listenLink"]}",
-                          };
-                        },
-                      ),
-                      TextButton(
-                        child: const Text("No"),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                      ),
-                    ],
-                  );
+                builder: (context) {
+                  if (_isFavorite) {
+                    //AlertDialog to delete or add to favorites list
+                    return _alertDialog(
+                        context,
+                        "Remove from favorites",
+                        "Do you want to remove the item from your favorites list?",
+                        "Remove",
+                        true);
+                  }
+                  else{
+                    return _alertDialog(
+                        context,
+                        "Add to Favorites",
+                        "Do you want to add the item to your favorites list?",
+                        "Add",
+                        false);
+                  }
                 },
               );
             },
-            icon: const Icon(Icons.favorite_border),
+            icon: _isFavorite
+                ? const Icon(Icons.favorite)
+                : const Icon(Icons.favorite_border),
           ),
         ],
         title: const Text(
           "Here you go",
-          style: TextStyle(
-            color: Colors.white
-          ),
+          style: TextStyle(color: Colors.white),
         ),
         backgroundColor: const Color(0xff042442),
       ),
@@ -164,4 +170,36 @@ class _ResultPageState extends State<ResultPage> {
       ),
     );
   }
+
+  AlertDialog _alertDialog(BuildContext context, String title, String message,
+      String actions, bool isNotFavorite) {
+    return AlertDialog(
+      title: Text(title),
+      content: Text(message),
+      actions: [
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          child: const Text("Cancel"),
+        ),
+        TextButton(
+          onPressed: () {
+            if (isNotFavorite) {
+              _isFavorite = false;
+              setState(() {});
+              context.read<FavoriteProvider>().removeFavorite(_song);
+            } else {
+              _isFavorite = true;
+              setState(() {});
+              context.read<FavoriteProvider>().addFavorite(_song);
+            }
+            Navigator.of(context).pop();
+          },
+          child: Text(actions),
+        )
+      ],
+    );
+  }
 }
+

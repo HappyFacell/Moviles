@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../credential.dart';
 import 'package:record/record.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
@@ -92,14 +93,15 @@ class HomepageBloc extends Bloc<HomepageEvent, HomepageState> {
   }
 
   Future _recieveResponse(String file) async {
-    (HomepageFinishedState());
+    emit(HomepageFinishedState());
     print("Enviando a la API");
     http.Response response = await http.post(
       Uri.parse('https://api.audd.io/'),
       headers: {'Content-Type': 'multipart/form-data'},
       body: jsonEncode(
         <String, dynamic>{
-          'api_token': '9723e5eaef3ae68b54db6008b6ed9e38',
+          // 'api_token': '9723e5eaef3ae68b54db6008b6ed9e38',
+          'api_token': key,
           'return': 'apple_music,spotify',
           'audio': file,
           'method': 'recognize',

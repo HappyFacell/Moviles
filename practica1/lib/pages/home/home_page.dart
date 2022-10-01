@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:practica1/pages/Result/result_page.dart';
 import 'package:practica1/pages/favorite/favorite_page.dart';
+import 'package:practica1/pages/favorite/provider/favorite_provider.dart';
 
 import 'bloc/homepage_bloc.dart';
 
@@ -53,6 +54,7 @@ class _HomePageState extends State<HomePage> {
                       "albumCover": _cover,
                       "listenLink": _link,
                     },
+                    isFavorite: false,
                   ),
                 ),
               );
@@ -147,7 +149,6 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
-                // TODO: Crear provider para canciones favoritas y crear pagina de favoritos mandar ambos botones a la pagina
                 ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).push(
