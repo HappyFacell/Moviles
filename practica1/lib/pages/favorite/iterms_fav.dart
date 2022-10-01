@@ -51,7 +51,7 @@ class _ItemFavState extends State<ItemFav> {
                   icon: const Icon(Icons.favorite),
                   onPressed: () => showDialog(
                         context: context,
-                        builder: (context) => _createDeleteAlertDialog(context),
+                        builder: (context) => _deleteAlert(context),
                       )),
             ),
             Positioned.fill(
@@ -88,24 +88,24 @@ class _ItemFavState extends State<ItemFav> {
 
 
 
-  AlertDialog _createDeleteAlertDialog(BuildContext context) {
+  AlertDialog _deleteAlert(BuildContext context) {
     return AlertDialog(
-      title: const Text("Eliminar de favoritos"),
+      title: const Text("Remove from favorites"),
       content: const Text(
-          "El elemento será eliminado de tus favoritos ¿Quieres continuar?"),
+          "Do you want to remove the item from your favorites list?"),
       actions: [
         TextButton(
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: const Text("Cancelar"),
+          child: const Text("Cancel"),
         ),
         TextButton(
           onPressed: () {
             context.read<FavoriteProvider>().removeFavorite(widget.favItem);
             Navigator.of(context).pop();
           },
-          child: const Text("Eliminar"),
+          child: const Text("Remove"),
         )
       ],
     );
