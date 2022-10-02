@@ -5,9 +5,7 @@ import 'package:provider/provider.dart';
 
 class FavSection extends StatelessWidget {
   const FavSection({super.key});
-
 //Same logic as the Wallet app
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

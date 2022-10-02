@@ -60,7 +60,7 @@ class _ItemFavState extends State<ItemFav> {
                 child: Container(
                   height: 60,
                   decoration: BoxDecoration(
-                    color: Colors.green.withOpacity(0.7),
+                    color: Colors.deepPurple.withOpacity(0.7),
                     borderRadius: const BorderRadius.only(
                         topRight: Radius.circular(25.0),
                         bottomRight: Radius.circular(8.0),
