@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:permisos/home/bloc/files_bloc.dart';
 
 class HomepPage extends StatelessWidget {
-  var _titleC = 'me la pelas';
+  var _titleC = TextEditingController();
 
   HomepPage({super.key});
 
