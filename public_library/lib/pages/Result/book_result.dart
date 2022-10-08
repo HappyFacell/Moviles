@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_share/flutter_share.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class BookResult extends StatefulWidget {
   final dynamic data;
@@ -25,7 +26,7 @@ class _BookResultState extends State<BookResult> {
             icon: const Icon(Icons.public),
             tooltip: 'Visitar página',
             onPressed: () {
-              _launchUrl("${widget.data["volumeInfo"]["previewLink"]}");
+              launchUrlString("${widget.data["volumeInfo"]["infoLink"]}", mode: LaunchMode.externalApplication);
             },
           ),
           IconButton(
@@ -117,9 +118,3 @@ class _BookResultState extends State<BookResult> {
   }
 }
 
-Future<void> _launchUrl(_url) async {
-  _url = Uri.parse(_url);
-  if (!await launchUrl(_url)) {
-    throw 'Could not launch $_url';
-  }
-}
