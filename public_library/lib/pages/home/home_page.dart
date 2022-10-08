@@ -10,93 +10,111 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    // TODO: Cambio de estretegia implementar BlocBuilder, falta investigar mas acerca de su uso.
     return Scaffold(
       appBar: AppBar(
         title: const Text('LibreriaFreeToPlay'),
-        backgroundColor: Colors.grey[800],
+        backgroundColor: Colors.grey[700],
       ),
       body: Container(
-        margin: const EdgeInsets.only(top: 35, left: 25, right: 25),
-        child: BlocConsumer<LibraryBloc, LibraryState>(
-          listener: (context, state) {
-            if (state is LibraryErrorState) {
-              print("Fallo correctamente $state");
-              ScaffoldMessenger.of(context)
-                ..removeCurrentSnackBar()
-                ..showSnackBar(
-                  const SnackBar(
-                    content: Text("Libros no encontrados."),
-                    backgroundColor: Colors.red,
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            TextField(
+              controller: bookController,
+              cursorColor: Colors.white,
+              decoration: InputDecoration(
+                border: const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                ),
+                fillColor: Colors.white,
+                label: const Text(
+                  'Search',
+                  style: TextStyle(
+                    color: Colors.white,
                   ),
-                );
-            } else if (state is LibraryLoadingState) {
-              print("Buscando $state");
-              ListView.builder(
-                itemCount: 30,
-                itemBuilder: (BuildContext context, int index) {
-                  return const VideoShimmer();
-                },
-              );
-            } else if (state is LibraryFoundState) {
-              print("Encontre: $state\n");
-              print('tamano: ${state.libraries.length}');
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0),
-                child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
+                ),
+                focusedBorder: const OutlineInputBorder(),
+                suffixIcon: IconButton(
+                  icon: const Icon(
+                    Icons.search,
+                    color: Colors.grey,
                   ),
-                  itemCount: state.libraries.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return BooksItems(books: state.libraries[index]);
+                  onPressed: () async {
+                    print('Controller: ${bookController.text}');
+                    BlocProvider.of<LibraryBloc>(context).add(
+                      SearchEvent(bookTitle: bookController.text),
+                    );
                   },
                 ),
-              );
-            }
-          },
-          builder: (context, state) {
-            return Column(
-              children: [
-                Row(
-                  children: [
-                    Flexible(
-                      flex: 1,
-                      child: TextField(
-                        controller: bookController,
-                        cursorColor: Colors.grey,
-                        decoration: InputDecoration(
-                          border: const OutlineInputBorder(),
-                          fillColor: Colors.grey,
-                          label: const Text(
-                            'Search',
-                            style: TextStyle(color: Colors.grey),
-                          ),
-                          focusedBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.grey),
-                          ),
-                          suffixIcon: IconButton(
-                            onPressed: () async {
-                              print('Controller: ${bookController.text}');
-                              BlocProvider.of<LibraryBloc>(context).add(
-                                SearchEvent(bookTitle: bookController.text),
-                              );
-                            },
-                            icon: const Icon(
-                              Icons.search,
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                )
-              ],
-            );
-          },
+              ),
+            ),
+            Expanded(
+              child: BlocBuilder<LibraryBloc, LibraryState>(
+                builder: (context, state) {
+                  if (state is LibraryInitialState) {
+                    return const Center(
+                      child: Text("Search your favorite book"),
+                    );
+                  }
+                  if (state is LibraryErrorState) {
+                    print("Fallo correctamente: $state");
+                    //TODO: Buscar como meter un SnackBar
+                    // _notFoundBooks(context);
+                    // state = LibraryInitialState as LibraryState;
+                    return const Center(
+                      child: Text("Books not found, please try again."),
+                    );
+                  } else if (state is LibraryLoadingState) {
+                    print("Buscando: $state");
+                    return _lisview();
+                  } else if (state is LibraryFoundState) {
+                    print("Encontre: $state");
+                    return _bookitems(state);
+                  } else {
+                    return const Center(
+                      child: Text("Search your favorite book"),
+                    );
+                  }
+                },
+              ),
+            ),
+          ],
         ),
+      ),
+    );
+  }
+
+  ListView _lisview() {
+    return ListView.builder(
+      itemCount: 30,
+      itemBuilder: (BuildContext context, int index) {
+        return const VideoShimmer();
+      },
+    );
+  }
+
+  Container _bookitems(LibraryFoundState state) {
+    return Container(
+      padding: const EdgeInsets.only(top: 8.0),
+      child: GridView.builder(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+        ),
+        itemCount: state.libraries.length,
+        itemBuilder: (BuildContext context, int index) {
+          return BooksItems(books: state.libraries[index]);
+        },
+      ),
+    );
+  }
+
+  ScaffoldFeatureController<SnackBar, SnackBarClosedReason> _notFoundBooks(
+      context) {
+    return ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text("Libros no encontrados."),
+        backgroundColor: Colors.red,
+        duration: Duration(seconds: 2),
       ),
     );
   }

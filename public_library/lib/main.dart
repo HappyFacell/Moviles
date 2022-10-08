@@ -12,6 +12,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'LibreriaFreeToPlay',
+      theme: ThemeData(
+        colorScheme: const ColorScheme.dark(),
+      ),
       home: BlocProvider(
         create: (context) => LibraryBloc(),
         child: HomePage(),

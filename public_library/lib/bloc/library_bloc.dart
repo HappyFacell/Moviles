@@ -1,8 +1,9 @@
-import 'dart:convert';
+
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:http/http.dart' as http;
+import 'package:public_library/repo/request_repo.dart';
+
 
 part 'library_event.dart';
 part 'library_state.dart';
@@ -21,7 +22,7 @@ class LibraryBloc extends Bloc<LibraryEvent, LibraryState> {
     dynamic booksList;
 
     try {
-      booksList = await getBooks(bookTitle);
+      booksList = await RequestBook.requestBooks.getLibrary(bookTitle);
 
       if (booksList["items"] == null) {
         throw Exception();
@@ -36,19 +37,5 @@ class LibraryBloc extends Bloc<LibraryEvent, LibraryState> {
     }
   }
 
-  Future<dynamic> getBooks(String requiredTitle) async {
-    dynamic bookList;
-    final apiReq = Uri(
-        scheme: "https",
-        host: "www.googleapis.com",
-        path: "books/v1/volumes",
-        queryParameters: {"q": requiredTitle});
-    try {
-      dynamic response = await http.get(apiReq);
-      bookList = jsonDecode(response.body);
-      return bookList;
-    } catch (e) {
-      throw "Error";
-    }
-  }
+  
 }

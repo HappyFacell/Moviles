@@ -17,6 +17,7 @@ class _BookResultState extends State<BookResult> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.grey[700],
         title: const Text('Detalles de libro'),
         actions: [
           IconButton(
@@ -108,7 +109,7 @@ class _BookResultState extends State<BookResult> {
         title: "${widget.data["volumeInfo"]["title"] ?? "Title not available"}",
         text:
             'Libro: ${widget.data["volumeInfo"]["title"] ?? "Title not available"}\nPaginas: ${widget.data["volumeInfo"]["pageCount"] ?? "Page number not available"}',
-        linkUrl: "${widget.data["selfLink"]}",
+        linkUrl: "${widget.data["saleInfo"]["buyLink"]}",
         chooserTitle: 'Elige como compartir tu libro');
   }
 }
