@@ -53,7 +53,7 @@ class _BookResultState extends State<BookResult> {
                 child: Padding(
                   padding: const EdgeInsets.only(top: 20.0, bottom: 20),
                   child: Text(
-                    "${widget.data["volumeInfo"]["title"] ?? "Title not available"}",
+                    "${widget.data["volumeInfo"]["title"] ?? "Title not available..."}",
                     style: const TextStyle(fontSize: 32),
                     overflow: titleShown ? null : TextOverflow.ellipsis,
                     textAlign: TextAlign.center,
@@ -63,7 +63,7 @@ class _BookResultState extends State<BookResult> {
               Padding(
                 padding: const EdgeInsets.only(bottom: 4.0),
                 child: Text(
-                  "${widget.data["volumeInfo"]["publishedDate"] ?? "Date not available"}",
+                  "${widget.data["volumeInfo"]["publishedDate"] ?? "Date not available..."}",
                   style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -74,7 +74,7 @@ class _BookResultState extends State<BookResult> {
               Padding(
                 padding: const EdgeInsets.only(bottom: 4.0),
                 child: Text(
-                  "Paginas: ${widget.data["volumeInfo"]["pageCount"] ?? "Page number not available"}",
+                  "Paginas: ${widget.data["volumeInfo"]["pageCount"] ?? "Page number not available..."}",
                   style: const TextStyle(
                     fontSize: 18,
                   ),
@@ -87,7 +87,7 @@ class _BookResultState extends State<BookResult> {
                   setState(() {});
                 },
                 child: Text(
-                  "${widget.data["volumeInfo"]["description"] ?? "Description not available"}",
+                  "${widget.data["volumeInfo"]["description"] ?? "Description not available..."}",
                   maxLines: descShown ? 30 : 6,
                   overflow: descShown ? null : TextOverflow.ellipsis,
                   style: const TextStyle(
