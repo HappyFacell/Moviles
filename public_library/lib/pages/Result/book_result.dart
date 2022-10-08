@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_share/flutter_share.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class BookResult extends StatefulWidget {
   final dynamic data;
@@ -23,7 +24,9 @@ class _BookResultState extends State<BookResult> {
           IconButton(
             icon: const Icon(Icons.public),
             tooltip: 'Visitar página',
-            onPressed: () {},
+            onPressed: () {
+              _launchUrl("${widget.data["volumeInfo"]["previewLink"]}");
+            },
           ),
           IconButton(
             icon: const Icon(Icons.share),
@@ -111,5 +114,12 @@ class _BookResultState extends State<BookResult> {
             'Libro: ${widget.data["volumeInfo"]["title"] ?? "Title not available"}\nPaginas: ${widget.data["volumeInfo"]["pageCount"] ?? "Page number not available"}',
         linkUrl: "${widget.data["saleInfo"]["buyLink"]}",
         chooserTitle: 'Elige como compartir tu libro');
+  }
+}
+
+Future<void> _launchUrl(_url) async {
+  _url = Uri.parse(_url);
+  if (!await launchUrl(_url)) {
+    throw 'Could not launch $_url';
   }
 }
