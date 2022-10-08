@@ -86,7 +86,7 @@ class HomePage extends StatelessWidget {
 
   ListView _lisview() {
     return ListView.builder(
-      itemCount: 30,
+      itemCount: 20,
       itemBuilder: (BuildContext context, int index) {
         return const VideoShimmer();
       },
