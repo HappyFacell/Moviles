@@ -1,0 +1,121 @@
+{
+  "project_info": {
+    "project_number": "807262947913",
+    "project_id": "ejemplofirebase-8f1cd",
+    "storage_bucket": "ejemplofirebase-8f1cd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:807262947913:android:a73c93ed41829a30db0d98",
+        "android_client_info": {
+          "package_name": "com.example.fire_tweeter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "807262947913-siklbft587jjeo9p3kkir8l9prl1gsdk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fire_tweeter",
+            "certificate_hash": "3522b113c630ea9651499ac02b8bd7a06a9ceb07"
+          }
+        },
+        {
+          "client_id": "807262947913-c94nn2g0619tm891ug25a8ot4vtqp3lm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC42nRnpKErC0aF9x_HXZYF0fJT_tFQCHA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "807262947913-c94nn2g0619tm891ug25a8ot4vtqp3lm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:807262947913:android:8fc668b666014328db0d98",
+        "android_client_info": {
+          "package_name": "mx.iteso.foto_share"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "807262947913-63qd2llc9trifmeistlg1tol6u82mgoi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mx.iteso.foto_share",
+            "certificate_hash": "3522b113c630ea9651499ac02b8bd7a06a9ceb07"
+          }
+        },
+        {
+          "client_id": "807262947913-c94nn2g0619tm891ug25a8ot4vtqp3lm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC42nRnpKErC0aF9x_HXZYF0fJT_tFQCHA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "807262947913-c94nn2g0619tm891ug25a8ot4vtqp3lm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:807262947913:android:060ea2033f8333aedb0d98",
+        "android_client_info": {
+          "package_name": "mx.iteso.photo_share"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "807262947913-vd0slee8f3gah7f934efemqcpu0u3onr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mx.iteso.photo_share",
+            "certificate_hash": "3522b113c630ea9651499ac02b8bd7a06a9ceb07"
+          }
+        },
+        {
+          "client_id": "807262947913-c94nn2g0619tm891ug25a8ot4vtqp3lm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC42nRnpKErC0aF9x_HXZYF0fJT_tFQCHA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "807262947913-c94nn2g0619tm891ug25a8ot4vtqp3lm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
