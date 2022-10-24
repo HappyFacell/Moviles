@@ -33,6 +33,7 @@ migrate_working_dir/
 .pub/
 /build/
 /lib/utils/
+/Borrar
 
 # Symbolication related
 app.*.symbols

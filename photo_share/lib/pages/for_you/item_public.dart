@@ -25,7 +25,7 @@ class _PublicItemState extends State<PublicItem> {
           ListTile(
             leading: CircleAvatar(
               child: Text(
-                widget.publicData['title'].toString()[0],
+                widget.publicData['username'].toString()[0],
               ),
             ),
             title: Text(widget.publicData['title'].toString()),
