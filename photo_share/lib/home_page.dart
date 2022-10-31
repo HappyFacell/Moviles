@@ -1,42 +1,41 @@
 import 'package:flutter/material.dart';
 
-import '../agregar/agregar.dart';
-import '../contenido/mi_contenido.dart';
-import '../espera/en_espera.dart';
-import '../for_you/for_you.dart';
+import 'content/agregar/agregar.dart';
+import 'content/espera/en_espera.dart';
+import 'content/foru/fotos_for_you.dart';
+import 'content/mis_fotos/mi_contenido.dart';
 
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  var _currentPageIndex = 0;
-  final _pageNameList = [
-    'agregar',
-    'espera',
-    'for_you',
-    'contenido',
+  int _currentPageIndex = 0;
+  final _pagesNameList = [
+    "For you",
+    "Crear nuevo",
+    "En espera",
+    "Mi contenido",
   ];
-  final _pageList = [
-    const Agregar(),
-    const EnEspera(),
-    const FotosForYou(),
-    const MiContenido(),
+  final _pagesList = [
+    FotosForYou(),
+    Agregar(),
+    EnEspera(),
+    MiContenido(),
   ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(_pageNameList[_currentPageIndex]),
+        title: Text("${_pagesNameList[_currentPageIndex]}"),
       ),
       body: IndexedStack(
         index: _currentPageIndex,
-        children: _pageList,
+        children: _pagesList,
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -48,21 +47,20 @@ class _HomePageState extends State<HomePage> {
         },
         items: [
           BottomNavigationBarItem(
-            icon: const Icon(Icons.view_carousel),
-            label: _pageNameList[0],
+            icon: Icon(Icons.view_carousel),
+            label: _pagesNameList[0],
           ),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.photo_camera),
-            label: _pageNameList[1],
+            icon: Icon(Icons.photo_camera),
+            label: _pagesNameList[1],
           ),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.query_builder),
-            label: _pageNameList[2],
-            
+            icon: Icon(Icons.query_builder),
+            label: _pagesNameList[2],
           ),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.mobile_friendly),
-            label: _pageNameList[3],
+            icon: Icon(Icons.mobile_friendly),
+            label: _pagesNameList[3],
           ),
         ],
       ),

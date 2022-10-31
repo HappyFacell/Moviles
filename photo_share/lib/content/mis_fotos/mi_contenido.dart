@@ -5,8 +5,8 @@ class MiContenido extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text("Mi contenido"),
+    return Center(
+      child: Text("MI CONTENIDO"),
     );
   }
 }

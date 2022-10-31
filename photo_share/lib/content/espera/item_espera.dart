@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class ItemEspera extends StatefulWidget {
   final Map<String, dynamic> nonPublicFData;
-  const ItemEspera({Key? key, required this.nonPublicFData}) : super(key: key);
+  ItemEspera({Key? key, required this.nonPublicFData}) : super(key: key);
+
   @override
   State<ItemEspera> createState() => _ItemEsperaState();
 }
