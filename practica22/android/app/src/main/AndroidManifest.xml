@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.practica22">
    <application
-        android:label="practica22"
+        android:label="Shazam_Practica2"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
