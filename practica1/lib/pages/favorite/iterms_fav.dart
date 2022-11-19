@@ -36,7 +36,6 @@ class _ItemFavState extends State<ItemFav> {
         width: 300,
         child: Stack(
           children: [
-            //TODO: Separar por metodos (Mayor facilidad de lectura)
             ClipRRect(
               borderRadius: BorderRadius.circular(8.0),
               child: Image.network(
