@@ -15,8 +15,10 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xff042442),
       appBar: AppBar(
         title: const Text('Login'),
+        backgroundColor: const Color(0xff042442),
       ),
       body: Stack(
         children: [
@@ -74,7 +76,7 @@ class _LoginPageState extends State<LoginPage> {
                               borderRadius: BorderRadius.circular(1.0),
                             )),
                         label: const Text(
-                          "INICIAR SESION CON GOOGLE",
+                          "Log in with Google",
                         ),
                       ),
                     ),
